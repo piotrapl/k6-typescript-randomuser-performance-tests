@@ -1,13 +1,13 @@
 {
-  "name": "k6-reqres-performance",
+  "name": "k6-randomuser-performance",
   "version": "1.0.0",
-  "description": "Simple k6 performance test using TypeScript",
+  "description": "Simple k6 performance test using TypeScript and RandomUser API",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && k6 run dist/users.test.js"
+    "test": "npm run build && k6 run dist/randomUsers.test.js"
   },
   "devDependencies": {
-    "@types/k6": "^0.48.0",
-    "typescript": "^5.3.0"
+    "typescript": "^5.3.0",
+    "@types/k6": "^0.48.0"
   }
 }
