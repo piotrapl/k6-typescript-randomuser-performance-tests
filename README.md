@@ -1,5 +1,7 @@
 # k6 + TypeScript Performance Testing Example
 
+[![CI - k6 Performance Testing](https://github.com/piotrapl/k6-typescript-reqres-performance-tests/actions/workflows/k6.yml/badge.svg)](https://github.com/piotrapl/k6-typescript-reqres-performance-tests/actions/workflows/k6.yml)
+
 A minimal example project demonstrating **API performance testing using k6 with TypeScript**.
 
 The test simulates **3 parallel users** browsing a paginated user list endpoint.
