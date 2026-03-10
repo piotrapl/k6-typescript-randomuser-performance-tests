@@ -1,12 +1,12 @@
 # k6 + TypeScript: API Performance Testing Example
 
-[![CI - k6 Performance Testing](https://github.com/piotrapl/k6-typescript-reqres-performance-tests/actions/workflows/k6.yml/badge.svg)](https://github.com/piotrapl/k6-typescript-reqres-performance-tests/actions/workflows/k6.yml)
+[![CI - k6 Performance Testing](https://github.com/piotrapl/k6-typescript-randomuser-performance-tests/actions/workflows/k6.yml/badge.svg)](https://github.com/piotrapl/k6-typescript-randomuser-performance-tests/actions/workflows/k6.yml)
 
 **Performance testing project using k6 + TypeScript** targeting a public API endpoint.
 
 **Scenario**
 
-* Endpoint: `GET https://reqres.in/api/users?page=1`
+* Endpoint: `GET https://randomuser.me/api/?results=5`
 * Purpose: simulate browsing user lists
 * Expected response: `200 OK`
 
@@ -48,7 +48,7 @@ k6-reqres-performance/
 │       └── k6.yml
 │
 ├── src/
-│   └── users.test.ts
+│   └── randomUsers.test.ts
 │
 ├── dist/
 │
@@ -152,7 +152,7 @@ npm test
 The test script performs repeated requests to the public API endpoint:
 
 ```
-GET https://reqres.in/api/users?page=1
+GET https://randomuser.me/api/?results=5
 ```
 
 Each virtual user:
