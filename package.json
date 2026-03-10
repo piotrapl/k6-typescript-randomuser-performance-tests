@@ -1,5 +1,5 @@
 {
-  "name": "k6-randomuser-performance",
+  "name": "k6-typescript-randomuser-performance-tests",
   "version": "1.0.0",
   "description": "Simple k6 performance test using TypeScript and RandomUser API",
   "scripts": {
