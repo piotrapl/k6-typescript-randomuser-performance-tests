@@ -35,5 +35,27 @@ jobs:
       - name: Build TypeScript
         run: npm run build
 
-      - name: Run performance test
-        run: k6 run dist/randomUsers.test.js
+      - name: Run performance test and export JSON
+        run: k6 run --summary-export summary.json dist/randomUsers.test.js
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-performance-report
+          path: summary.html
+
+      - name: Extract metrics and publish summary
+        run: |
+          AVG=$(jq '.metrics.http_req_duration.avg' summary.json)
+          P95=$(jq '.metrics.http_req_duration["p(95)"]' summary.json)
+          FAIL_RATE=$(jq '.metrics.http_req_failed.rate' summary.json)
+          REQS=$(jq '.metrics.http_reqs.count' summary.json)
+
+          echo "## k6 Performance Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Avg request duration | ${AVG} ms |" >> $GITHUB_STEP_SUMMARY
+          echo "| P95 request duration | ${P95} ms |" >> $GITHUB_STEP_SUMMARY
+          echo "| Failed requests | ${FAIL_RATE} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total requests | ${REQS} |" >> $GITHUB_STEP_SUMMARY
