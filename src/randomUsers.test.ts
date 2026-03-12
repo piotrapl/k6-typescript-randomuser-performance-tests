@@ -4,9 +4,9 @@ import { check, sleep } from "k6";
 export const options = {
 
   stages: [
-    { duration: "10s", target: 1 }, // stage 1
-    { duration: "10s", target: 2 }, // stage 2
-    { duration: "10s", target: 3 }  // stage 3
+    { duration: "10s", target: 1 },
+    { duration: "10s", target: 2 },
+    { duration: "10s", target: 3 }
   ],
 
   thresholds: {
@@ -16,10 +16,8 @@ export const options = {
 
 };
 
-
 // container for request logs
 const requestLogs: any[] = [];
-
 
 export default function () {
 
@@ -31,7 +29,7 @@ export default function () {
     "status is 200": (r) => r.status === 200
   });
 
-  // store request log entry
+  // save request log
   requestLogs.push({
     timestamp: new Date().toISOString(),
     vu: __VU,
@@ -47,15 +45,18 @@ export default function () {
   });
 
   sleep(1);
-
 }
 
 
-// export logs after test run
-export function handleSummary() {
+// export test summary and logs
+export function handleSummary(data: any) {
 
   return {
-    "logs/test-run-log.json": JSON.stringify(requestLogs, null, 2)
+
+    "logs/test-run-log.json": JSON.stringify(requestLogs, null, 2),
+
+    stdout: JSON.stringify(data, null, 2)
+
   };
 
 }

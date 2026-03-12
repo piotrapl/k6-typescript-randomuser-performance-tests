@@ -1,6 +1,6 @@
 {
   "name": "k6-typescript-randomuser-performance-tests",
-  "version": "1.0.0",
+  "version": "16.4.0",
   "description": "Simple k6 performance test using TypeScript and RandomUser API",
   "scripts": {
     "build": "tsc",
@@ -10,4 +10,4 @@
     "typescript": "^5.3.0",
     "@types/k6": "^0.48.0"
   }
-}
+} 
