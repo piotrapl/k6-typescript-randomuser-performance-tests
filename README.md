@@ -41,7 +41,7 @@ Workflow file: `.github/workflows/k6.yml`
 # Project Structure
 
 ```
-k6-reqres-performance/
+k6-typescript-randomuser-performance-tests/
 │
 ├── .github/
 │   └── workflows/
@@ -60,7 +60,7 @@ k6-reqres-performance/
 | Path                       | Description                           |
 | -------------------------- | ------------------------------------- |
 | `.github/workflows/k6.yml` | CI pipeline running performance tests |
-| `src/users.test.ts`        | TypeScript test scenario              |
+| `src/randomUers.test.ts`   | TypeScript test scenario              |
 | `dist/`                    | compiled JavaScript output            |
 | `package.json`             | project dependencies and scripts      |
 | `tsconfig.json`            | TypeScript configuration              |
@@ -134,7 +134,7 @@ dist/
 ### Execute performance test
 
 ```
-k6 run dist/users.test.js
+k6 run dist/randomUsers.test.js
 ```
 
 ---
@@ -162,7 +162,7 @@ Each virtual user:
 3. waits for a short think time
 4. repeats the request until the test duration ends
 
-This simulates **multiple users browsing a paginated user list endpoint**.
+This simulates **multiple users requesting random opersonal data**.
 
 ---
 
