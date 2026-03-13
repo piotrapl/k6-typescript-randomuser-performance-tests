@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   performance-test:
@@ -14,42 +15,50 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
       - name: Install k6
         run: |
-          sudo gpg -k
           sudo apt-get update
           sudo apt-get install -y gnupg software-properties-common
           curl -fsSL https://dl.k6.io/key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
           echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
           sudo apt-get update
-          sudo apt-get install k6
+          sudo apt-get install -y k6
 
       - name: Build TypeScript
         run: npm run build
 
-      - name: Run performance test and export JSON
-        run: k6 run --summary-export summary.json dist/randomUsers.test.js
+      - name: Run k6 performance test
+        run: |
+          mkdir -p reports
+          k6 run --summary-export reports/summary.json dist/randomUsers.test.js
 
-      - name: Upload HTML report
+      - name: Generate HTML report
+        run: |
+          npx k6-html-reporter \
+            --summary-export reports/summary.json \
+            --output reports/summary.html
+
+      - name: Upload k6 HTML report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: k6-performance-report
-          path: summary.html
+          name: k6-performance-report-${{ github.run_number }}
+          path: reports/summary.html
 
-      - name: Extract metrics and publish summary
+      - name: Publish performance summary
         run: |
-          AVG=$(jq '.metrics.http_req_duration.avg' summary.json)
-          P95=$(jq '.metrics.http_req_duration["p(95)"]' summary.json)
-          FAIL_RATE=$(jq '.metrics.http_req_failed.rate' summary.json)
-          REQS=$(jq '.metrics.http_reqs.count' summary.json)
+          AVG=$(jq '.metrics.http_req_duration.avg' reports/summary.json)
+          P95=$(jq '.metrics.http_req_duration["p(95)"]' reports/summary.json)
+          FAIL_RATE=$(jq '.metrics.http_req_failed.rate' reports/summary.json)
+          REQS=$(jq '.metrics.http_reqs.count' reports/summary.json)
 
           echo "## k6 Performance Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
