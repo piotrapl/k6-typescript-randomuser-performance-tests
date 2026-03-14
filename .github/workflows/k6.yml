@@ -33,6 +33,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y k6
 
+      - name: Install HTML reporter
+        run: npm install k6-html-reporter
+
       - name: Build TypeScript
         run: npm run build
 
