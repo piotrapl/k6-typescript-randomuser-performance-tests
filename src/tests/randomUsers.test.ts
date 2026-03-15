@@ -5,13 +5,42 @@ import { sequenceB } from "../scenarios/sequenceB";
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
 export { options };
-
 export { sequenceA, sequenceB };
+
+
+function filterMetricsBySequence(data: any, sequence: string) {
+
+  const filtered = JSON.parse(JSON.stringify(data));
+
+  const metrics = filtered.metrics;
+
+  Object.keys(metrics).forEach((metric) => {
+
+    if (metrics[metric].values) {
+      return;
+    }
+
+    if (metrics[metric].thresholds) {
+      return;
+    }
+
+  });
+
+  return filtered;
+
+}
+
 
 export function handleSummary(data: any) {
 
+  const reportA = filterMetricsBySequence(data, "sequenceA");
+  const reportB = filterMetricsBySequence(data, "sequenceB");
+
   return {
-    "reports/performance-report.html": htmlReport(data)
+
+    "reports/report-sequenceA.html": htmlReport(reportA),
+    "reports/report-sequenceB.html": htmlReport(reportB)
+
   };
 
 }
