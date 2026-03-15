@@ -37,8 +37,11 @@ export const options = {
 
   thresholds: {
 
-    http_req_failed: ["rate<0.01"],
-    http_req_duration: ["p(95)<800"],
+    "http_req_duration{sequence:sequenceA}": ["p(95)<800"],
+    "http_req_duration{sequence:sequenceB}": ["p(95)<800"],
+
+    "http_req_failed{sequence:sequenceA}": ["rate<0.01"],
+    "http_req_failed{sequence:sequenceB}": ["rate<0.01"],
 
     sequenceA_errors: ["rate<0.01"],
     sequenceB_errors: ["rate<0.01"]

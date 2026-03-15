@@ -7,9 +7,9 @@ export const sequenceA_errors = new Rate("sequenceA_errors");
 
 export function sequenceA() {
 
-  group("Sequence A metrics - getting data of 1 random user", () => {
+  group("Sequence A - getting data of 1 random user", () => {
 
-    const res = getRandomUsers(1);
+    const res = getRandomUsers(1, "sequenceA");
 
     const ok = check(res, {
       "status is 200": (r) => r.status === 200
@@ -21,4 +21,5 @@ export function sequenceA() {
   });
 
   sleep(1);
+
 }
