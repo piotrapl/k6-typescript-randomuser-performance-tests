@@ -7,7 +7,7 @@
 **Scenario**
 
 * Endpoint: `GET https://randomuser.me/api/?results=5`
-* Purpose: simulate browsing user lists
+* Purpose: simulate requesting random users data  
 * Expected response: `200 OK`
 
 **Workload Model**
