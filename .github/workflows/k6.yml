@@ -1,4 +1,4 @@
-name: k6 Performance Test
+name: CI - k6 Performance Tests
 
 on:
   push:
