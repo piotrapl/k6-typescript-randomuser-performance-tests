@@ -1,6 +1,6 @@
-import { options } from "../config/options";
-import { sequenceA } from "../scenarios/sequenceA";
-import { sequenceB } from "../scenarios/sequenceB";
+import { options } from "../config/options.js";
+import { sequenceA } from "../scenarios/sequenceA.js";
+import { sequenceB } from "../scenarios/sequenceB.js";
 
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 

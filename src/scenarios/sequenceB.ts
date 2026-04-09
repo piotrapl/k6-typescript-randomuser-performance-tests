@@ -1,6 +1,6 @@
 import { check, sleep, group } from "k6";
 import { Trend, Rate } from "k6/metrics";
-import { getRandomUsers } from "../services/randomUserService";
+import { getRandomUsers } from "../services/randomUserService.js";
 
 export const sequenceB_duration = new Trend("sequenceB_duration");
 export const sequenceB_errors = new Rate("sequenceB_errors");
