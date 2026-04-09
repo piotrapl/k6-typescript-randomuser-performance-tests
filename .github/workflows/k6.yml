@@ -42,7 +42,7 @@ jobs:
       - name: Run k6 performance test
         run: |
           mkdir -p reports
-          k6 run --summary-export reports/summary.json dist/randomUsers.test.js
+          k6 run --summary-export reports/summary.json dist/tests/randomUsers.test.js
 
      # - name: Generate HTML report
      #   run: |
