@@ -30,6 +30,10 @@ function filterMetricsBySequence(data: any, sequence: string) {
 
 }
 
+// handleSummary - to funkcja wywoływana po zakończeniu testów k6. 
+// Przyjmuje dane testowe i generuje raporty HTML dla dwóch różnych sekwencji testowych.
+//  Funkcja filtruje metryki na podstawie sekwencji, a następnie używa funkcji `htmlReport` 
+// do wygenerowania raportów HTML.
 
 export function handleSummary(data: any) {
 
