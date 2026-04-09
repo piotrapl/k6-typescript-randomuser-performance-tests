@@ -1,4 +1,4 @@
-import { options } from "../config/options.ts";
+import { options } from "../config/options.js";
 import { sequenceA } from "../scenarios/sequenceA";
 import { sequenceB } from "../scenarios/sequenceB";
 
