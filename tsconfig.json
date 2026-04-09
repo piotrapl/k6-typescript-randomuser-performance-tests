@@ -10,7 +10,9 @@
 
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
     "src/**/*.ts",
