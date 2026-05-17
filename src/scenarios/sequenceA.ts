@@ -7,7 +7,7 @@ export const sequenceA_errors = new Rate("sequenceA_errors");
 
 export function sequenceA() {
 
-  group("Sequence A - getting data of 1 random user", () => {
+  group("Sequence A - pobranie danych 1 losowego użytkownika", () => {
 
     const res = getRandomUsers(1, "sequenceA");
 
