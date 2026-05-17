@@ -4,6 +4,10 @@ opcje testowe dla k6, definiują scenariusze testowe i progi wydajności
 executor "constant-vus" - tzn. test będzie wykonywany z określoną liczbą wirtualnych użytkowników (VUs)
     przez określony czas.
 exec - określa, która funkcja testowa ma być wykonywana dla danego scenariusza.
+vus: - liczba wirtualnych użytkowników, którzy będą wykonywać test.
+duration: - czas trwania testu.
+startTime: - czas rozpoczęcia testu.
+thresholds - definiują progi wydajności, które muszą być spełnione, by test został uznany za zaliczony.
 */
   scenarios: {
 
