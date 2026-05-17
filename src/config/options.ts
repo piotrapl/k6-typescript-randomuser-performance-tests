@@ -3,6 +3,7 @@ export const options = {
 opcje testowe dla k6, definiują scenariusze testowe i progi wydajności 
 executor "constant-vus" - tzn. test będzie wykonywany z określoną liczbą wirtualnych użytkowników (VUs)
     przez określony czas.
+exec - określa, która funkcja testowa ma być wykonywana dla danego scenariusza.
 */
   scenarios: {
 
