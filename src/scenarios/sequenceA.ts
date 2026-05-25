@@ -8,7 +8,9 @@ export const sequenceA_errors = new Rate("sequenceA_errors");
 /* To jest przykładowa sekwencja, która pobiera dane 1 losowego użytkownika z API randomuser.me. 
 
 sequenceA_duration.add(res.timings.duration); - dodaje czas trwania odpowiedzi do trendu sequenceA_duration, 
-      to pozwala nam analizować średni czas odpowiedzi dla tej sekwencji.
+    to pozwala nam analizować średni czas odpowiedzi dla tej sekwencji.
+sequenceA_errors.add(!ok); - dodaje wartość true do rate sequenceA_errors, 
+    jeśli odpowiedź nie jest poprawna (status inny niż 200),
 */
 export function sequenceA() {
 
