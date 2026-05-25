@@ -5,6 +5,11 @@ import { getRandomUsers } from "../services/randomUserService.js";
 export const sequenceA_duration = new Trend("sequenceA_duration");
 export const sequenceA_errors = new Rate("sequenceA_errors");
 
+/* To jest przykładowa sekwencja, która pobiera dane 1 losowego użytkownika z API randomuser.me. 
+
+sequenceA_duration.add(res.timings.duration); - dodaje czas trwania odpowiedzi do trendu sequenceA_duration, 
+      to pozwala nam analizować średni czas odpowiedzi dla tej sekwencji.
+*/
 export function sequenceA() {
 
   group("Sequence A - pobranie danych 1 losowego użytkownika", () => {
